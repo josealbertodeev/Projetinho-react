@@ -1,40 +1,43 @@
-import { v4 as uuid } from 'uuid';
-import React, { useState } from 'react';
+import { v4 as uuid } from "uuid";
+import React, { useState } from "react";
+import { Botao, Container, Input, ToDoList } from "./styles";
 
 function App() {
-
   // useState retorna um array com 2 posições
   // 1. Variável com o valor do estado = lista
   // 2. Função para atualizar esse valor = setLista
   // 3. useState recebe o valor inicial do estado = []
+  // uuid é uma função usada para gerar IDs únicos
 
-  const [lista, setLista] = useState([{id: uuid(), tarefa: 'Nada'}]);
+  const [lista, setLista] = useState([{ id: uuid(), tarefa: "Nada" }]);
+  const [tarefa, setTarefa] = useState("");
 
   function inputChange(event) {
-    console.log(event.target.value);
-    setLista([{id: uuid(), tarefa: event.target.value}])
-
-    console.log(lista);
+    setTarefa(event.target.value);
   }
 
   function cliqueiNoBotao() {
-    console.log('Clicou no botao');
+    setLista([...lista, { id: uuid(), tarefa: tarefa }]);
   }
 
   return (
-    <div>
+    <Container>
+      <ToDoList>
+        <Input
+          className="input-tarefa"
+          onChange={inputChange}
+          placeholder="Tarefa para fazer 📝 ... "
+        />
+        <Botao onClick={cliqueiNoBotao}>Adicionar</Botao>
 
-      <input onChange={inputChange} placeholder="Tarefa para fazer 📝 ... " />
-      <button onClick={cliqueiNoBotao}>Adicionar</button>
-
-      <ul>
-        {lista.map((item) => (
-          <li key={item.id}>{item.tarefa}</li>
-      ))}
-      </ul>
-
-    </div>
-  )
+        <ul>
+          {lista.map((item) => (
+            <li key={item.id}>{item.tarefa}</li>
+          ))}
+        </ul>
+      </ToDoList>
+    </Container>
+  );
 }
 
 export default App;
