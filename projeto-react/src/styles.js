@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { FcEmptyTrash, FcCheckmark } from "react-icons/fc";
 
 // const = Nome da variavel no caso vamos 
 // estilzar uma div com nome Container = styled.div
@@ -20,15 +21,26 @@ export const ToDoList = styled.div`
     ul{
         padding: 0;
         margin-top: 30px;
+
+        h3{
+            color: #0e0b0bff;
+            font-weight: 400;
+            text-align: center;
+        }
     }
 `
 
 export const Input = styled.input`
-    border: 2px solid rgba(289, 211, 217, 0.4);
+    border: 2px solid #a28fcdff;
     border-radius: 5px;
     height: 40px;
     margin-right: 10px;
     width: 340px;
+
+    &::placeholder{
+        font-size: 16px;
+        padding-left: 10px;
+    }
 `
 
 export const Botao = styled.button`
@@ -41,6 +53,14 @@ export const Botao = styled.button`
     height: 40px;
     width: 130px;
     cursor: pointer;
+
+    &:hover{
+        background: #6b3ed1;
+    }
+
+    &:active{
+        background: #5b2dab;
+    }
 `
 
 export const ListaItem = styled.div`
@@ -59,3 +79,17 @@ export const ListaItem = styled.div`
         list-style: none;
     }
 `
+
+export const Check = styled(FcCheckmark)`
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+`
+
+export const Trash = styled(FcEmptyTrash)`
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+
+`
+
